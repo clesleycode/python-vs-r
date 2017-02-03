@@ -74,6 +74,28 @@ install.packages('ggplot2')
 install.packages('compare')
 ```
 
+### 0.4 Virtual Environment
+
+If you'd like to work in a virtual environment, you can set it up as follows: 
+```
+pip3 install virtualenv
+virtualenv your_env
+```
+And then launch it with: 
+```
+source your_env/bin/activate
+```
+
+To execute the visualizations in matplotlib, do the following:
+
+```
+cd ~/.matplotlib
+nano matplotlibrc
+```
+And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
+
+Cool, now we're ready to start! 
+
 ## 1.0 Introduction
 
 Python and R are two commonly used programming languages in the realm of data science. Some data scientists prefer R, others prefer Python; regardless, both are useful programming languages to feel comfortable with if you're interested in Data Science. With that said, in this tutorial we'll go through data analysis problems in both languages, making sure to highlight differences between the two languages and why having both skillsets is important.  
@@ -82,7 +104,7 @@ Python and R are two commonly used programming languages in the realm of data sc
 
 For this tutorial, we'll be analyzing a dataset of NBA players and their performance in the 2013-2014 season. You can download the dataset below:
 
-[Primary Election Results](https://github.com/lesley2958/python-vs-r/blob/master/results.csv)
+[NBA Performances](https://github.com/lesley2958/python-vs-r/blob/master/nba_2013.csv)
 
 ## 2.0 Data Preparation & Basic Functionality
 
@@ -164,7 +186,6 @@ Notice that R has more data analysis focused builtins, like floor, sample, and s
 
 ## 3.0 Data Visualizations
 
-<<<<<<< HEAD
 ### 3.1 Pairwise Scatterplots
 
 One common way to explore a dataset is to see how different columns correlate to others. We’ll compare the ast, fg, and trb columns.
@@ -173,8 +194,7 @@ In R, we'll do this using the GGally package.
 
 =======
 #### 2.2.2 R Training & Test
-```
->>>>>>> 2f2993b4e7befff0c62ffbda8029a5fe874efbf8
+
 ``` R
 library(GGally)
 ggpairs(nba[,c("ast", "fg", "trb")])
@@ -239,7 +259,7 @@ clusplot(twoColumns, labels)
 ### 3.3 ggplot & diamonds
 
 ```python
-from ggplot.exampledata import diamonds
+from ggplot import *
 import seaborn as sns
 import matplotlib.pyplot as plt
 
@@ -393,7 +413,7 @@ sns.set_context('notebook', font_scale=1.5)
 cp = sns.color_palette()
 ```
 
-In this example, we'll be creating a random time series -- here we'll load in the data with pandas. 
+In this example, we'll be creating a random time series -- here we'll load in the data with pandas. You can find the data [here](https://github.com/lesley2958/python-vs-r/blob/master/ts.csv).
 
 ``` python
 ts = pd.read_csv('./ts.csv')
@@ -420,24 +440,6 @@ g.fig.autofmt_xdate()
 ```
 
 Now let's take a look!
-
-``` python
-plt.show()
-```
-
-
-``` python
-df = pd.read_csv('./iris.csv')
-```
-
-Once again, we call the FacetGrid object for our scatterplot and follow up by plotting the scatter plots with its aesthetical specifics. 
-``` python
-g = sns.FacetGrid(df, hue='species', size=7.5)
-g.map(plt.scatter, 'petalLength', 'petalWidth').add_legend()
-g.ax.set_title('Petal Width v. Length -- by Species')
-```
-
-Now let's take a look! 
 
 ``` python
 plt.show()
