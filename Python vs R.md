@@ -5,8 +5,6 @@ Brought to you by [Lesley Cordero](http://www.columbia.edu/~lc2958) and [ADI](ht
 
 This tutorial assumes at least some basic knowledge in one of the languages. The goal of this tutorial is not to teach both languages, but rather to teach how commonly used skills can be transferred from one to the other.
 
-To get the most out of this tutorial, some basic understanding of machine learning is also helpful, though not necessarily required.
-
 ## Table of Contents
 
 - [0.0 Setup](#00-setup)
@@ -90,7 +88,7 @@ To execute the visualizations in matplotlib, do the following:
 
 ```
 cd ~/.matplotlib
-nano matplotlibrc
+vim matplotlibrc
 ```
 And then, write `backend: TkAgg` in the file. Now you should be set up with your virtual environment!
 
@@ -98,15 +96,49 @@ Cool, now we're ready to start!
 
 ## 1.0 Introduction
 
-Python and R are two commonly used programming languages in the realm of data science. Some data scientists prefer R, others prefer Python; regardless, both are useful programming languages to feel comfortable with if you're interested in Data Science. With that said, in this tutorial we'll go through data analysis problems in both languages, making sure to highlight differences between the two languages and why having both skillsets is important.  
+Data science is an interdisciplinary field where scientific techniques from statistics, mathematics, and computer science are used to analyze data and solve problems more accurately and effectively. It is no wonder, then, that languages such as R and Python, with their extensive packages and libraries that support statistical methods and machine learning algorithms are cornerstones of the data science revolution.
 
-### 1.1 The Data 
+### 1.1 R
+
+R is an open source, statistical computing language that was built in 1995 by Ross Ihaka and Robert Gentleman. It was created with the intention of making data analysis, statistical models and graphical models easier. R has a large repository of packages called CRAN that users routinely contribute to. One of R’s main strengths is that it has a very active community that provides ample support to users via mailing lists, StackOverFlow forums, and very extensive documentation of all its packages. R has a slightly quirky syntax which can be hard to pick up for beginners but is especially suited for people from a statistical and research background looking to get started with creating their models quickly.
+
+### 1.2 Python
+
+Python is a high level, interpreted, general purpose language that was built in 1991 by Guido Van Rossem to improve programmer productivity and code readability. It is usually the preferred language for programmers and people with a computer science background looking to get into data analysis. It is a very flexible language, making it great for production level work and, like R, has libraries of packages around statistics and machine learning in PyPi, the repository of Python packages. It has great community support, although being a general purpose language it is not all concentrated around data science. 
+
+The biggest advantage to using Python is the availability of packages such as Theano, Keras, scikit-learn that are important machine learning and deep learning libraries used by both academic research purposes as well as for commercial intent.
+
+### 1.3 Choosing
+
+As professional problem solvers, data science practitioners need to have a versatile set of tools as part of their repertoire. While learning both R and Python is ideal, given that R makes data cleaning and manipulation a very easy task while Python is better for building models on larger data sets and scale, we all have to begin somewhere. And the right choice for you can be determined by the following factors - previous programming experience, educational background, career aspirations, and interest in working with deep learning technology.
+
+
+#### 1.3.1 Previous Programming Experience
+
+If you have any programming experience prior to learning data science, our recommendation would be for you to learn Python. It’s clear syntax would be easy for you to take up; and with it being a general purpose language, you’d have the added flexibility for building novel stuff. Even a complete novice is advised to learn Python, as it is one of the most beginner friendly languages in Computer Science, being the most popular introductory teaching language in the top U.S. universities (Communications of the ACM article, 2014). R code gets to the point more quickly and is less verbose as well, but it has a quirky syntax that would be difficult to learn for both hardcore programmers and beginners alike. We recommend this course for those interested in learning Python programming.
+
+#### 1.3.2 Educational Background
+Having a background in statistics or mathematics makes R a better choice for you. This is because R is a domain specific language created specifically for statistics, making its usage intuitive for people with a degree in statistics. R was created by statisticians and made with other statisticians in mind, so having a grasp of statistical analysis makes the transition into this language all the more easy.
+
+#### 1.3.3 Career Aspirations
+
+As a data analyst/business analyst/financial analyst, your focus would be on extracting the most information out of your data, without needing to create a product out of your content. For this reason, learning R and a database language like SQL would serve you better as R is great for working with tabular data on a single system/server and has great libraries like ggplot2 for easy visualizations.
+
+But a data scientist has different requirements, as they’re expected to carry out analysis as well as create products such as machine learning engines that work on the database of a website or a software. This would require both software development as well as predictive modelling work which can be better accomplished by a general purpose language like Python. These principles would apply across all industries.
+
+#### 1.3.4 Interest in Deep Learning
+
+Deep Learning is the trending topic du jour and anyone with an interest in contributing to the growth of artificial intelligence technology should be learning Python. Its overwhelming popularity for both machine learning as well as deep learning comes from the fact that Python acts as an interface between the programmer and lower level languages like C/C++, this making it very easy for experimenting, creating models and debugging without compromising on computational speed (as the machine uses C/C++and CUDA technology to build the models). This makes Python a very accessible language for mathematicians and statisticians looking to create neural network models without having to start creating them from scratch due to the pre-existing frameworks provided by Python. 
+
+### 1.5 Tutorial
 
 For this tutorial, we'll be analyzing a dataset of NBA players and their performance in the 2013-2014 season. You can download the dataset below:
 
 [NBA Performances](https://github.com/lesley2958/python-vs-r/blob/master/nba_2013.csv)
 
 ## 2.0 Data Preparation & Basic Functionality
+
+Regardless of the language you use, its ability to handle, read, and clean is crucial to the field of data science. In this section we'll review the different ways each language handles basic data preparation. 
 
 ### 2.1 Reading the Data
 
@@ -160,12 +192,12 @@ sapply(nba, mean, na.rm=TRUE)
 
 In both, we’re applying a function across the dataframe columns. But in python, the mean method on dataframes will find the mean of each column by default.
 
-In R, taking the mean of string values will just result in NA – not available. However, we do need to ignore NA values when we take the mean (requiring us to pass na.rm=TRUE into the mean function). If we don’t, we end up with NA for the mean of columns like x3p.. This column is three point percentage. Some players didn’t take three point shots, so their percentage is missing. If we try the mean function in R, we get NA as a response, unless we specify na.rm=TRUE, which ignores NA values when taking the mean. The .mean() method in Python already ignores these values by default.
+In R, taking the mean of string values will just result in NA – not available. However, we do need to ignore NA values when we take the mean (requiring us to pass na.rm=TRUE into the mean function). If we don’t, we end up with NA for the mean of columns like x3p.. This column is three point percentage. Some players didn’t take three point shots, so their percentage is missing. If we try the mean function in R, we get NA as a response, unless we specify na.rm=TRUE, which ignores NA values when taking the mean. The `.mean()` method in Python already ignores these values by default.
 
 
 #### 2.3 Training & Test Data
 
-Since we'll be doing supervised machine learning later in this workshop, it’s a good idea to split the data into training and testing sets so we don’t overfit.
+Since we'll be doing supervised machine learning later in this workshop, we'll need to split the data into training and testing sets so we don’t overfit and are able to test for accuracy.
 
 ``` R
 trainRowCount <- floor(0.8 * nrow(nba))
@@ -183,16 +215,17 @@ test = nba.loc[~nba.index.isin(train.index)]
 Notice that R has more data analysis focused builtins, like floor, sample, and set.seed, whereas these are called via packages in Python (math.floor, random.sample, random.seed). In Python, the recent version of pandas came with a sample method that returns a certain proportion of rows randomly sampled from a source dataframe – this makes the code much more concise. In R, there are packages to make sampling simpler, but aren’t much more concise than using the built-in sample function. In both cases, we set a random seed to make the results reproducible.
 
 
+## 3.0 Data Visualization
 
-## 3.0 Data Visualizations
+Data Visualization is an important and exciting aspect of data science. It reveals information we otherwise wouldn't have noticed. It allows us to showcase the work we've done through visualizations, which can be stagnant or interactive. 
 
 ### 3.1 Pairwise Scatterplots
 
-One common way to explore a dataset is to see how different columns correlate to others. We’ll compare the ast, fg, and trb columns.
+One common way to explore a dataset is to see how different columns correlate to others. We’ll compare the `ast`, `fg`, and `trb` columns in the NBA dataset.
 
-In R, we'll do this using the GGally package.
+In R, we'll do this using the `GGally` package.
 
-=======
+
 #### 2.2.2 R Training & Test
 
 ``` R
